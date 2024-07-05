@@ -39,7 +39,7 @@ class ToggleList extends StatefulWidget {
   ///
   /// Use it with caution as setting the upper and lower padding will make
   /// the scrollable space shorter than the scrollbar's height.
-  final EdgeInsets innerPadding;
+  final EdgeInsets listViewPadding;
 
   /// The direction in which the list can be scrolled.
   final Axis scrollDirection;
@@ -105,7 +105,7 @@ class ToggleList extends StatefulWidget {
     this.curve = Curves.easeIn,
     this.divider = const SizedBox(height: 20),
     this.flipTrailingOnToggle = true,
-    this.innerPadding = const EdgeInsets.symmetric(horizontal: 8),
+    this.listViewPadding = const EdgeInsets.symmetric(horizontal: 8),
     this.toggleAnimationDuration = const Duration(milliseconds: 500),
     this.sectionsLeftExpanded = Sections.last,
     this.scrollDirection = Axis.vertical,
@@ -131,7 +131,7 @@ class _ToggleListState extends State<ToggleList> {
       viewportBoundaryGetter: () {
         return Rect.fromLTRB(
           widget.viewPadding.left,
-          widget.viewPadding.top,
+          widget.viewPadding.top + widget.listViewPadding.top,
           widget.viewPadding.right,
           widget.viewPadding.bottom,
         );
@@ -156,32 +156,30 @@ class _ToggleListState extends State<ToggleList> {
       controller: _scrollController,
       interactive: true,
       thumbVisibility: false,
-      child: Padding(
-        padding: widget.innerPadding,
-        child: ListView.separated(
-          cacheExtent: MediaQuery.of(context).size.height * 2,
-          controller: _scrollController,
-          itemCount: widget.children.length,
-          scrollDirection: widget.scrollDirection,
-          physics: widget.scrollPhysics,
-          shrinkWrap: widget.shrinkWrap,
-          separatorBuilder: (context, index) => widget.divider,
-          itemBuilder: (context, index) {
-            return ToggleListData(
-              child: widget.children[index],
-              children: widget.children,
-              curve: widget.curve,
-              listController: _listController,
-              scrollController: _scrollController,
-              flipTrailingOnToggle: widget.flipTrailingOnToggle,
-              toggleAnimationDuration: widget.toggleAnimationDuration,
-              scrollDuration: widget.scrollDuration,
-              scrollPosition: widget.scrollPosition,
-              trailing: widget.trailing,
-              trailingExpanded: widget.trailingExpanded,
-            );
-          },
-        ),
+      child: ListView.separated(
+        padding: widget.listViewPadding,
+        cacheExtent: MediaQuery.of(context).size.height * 2,
+        controller: _scrollController,
+        itemCount: widget.children.length,
+        scrollDirection: widget.scrollDirection,
+        physics: widget.scrollPhysics,
+        shrinkWrap: widget.shrinkWrap,
+        separatorBuilder: (context, index) => widget.divider,
+        itemBuilder: (context, index) {
+          return ToggleListData(
+            child: widget.children[index],
+            children: widget.children,
+            curve: widget.curve,
+            listController: _listController,
+            scrollController: _scrollController,
+            flipTrailingOnToggle: widget.flipTrailingOnToggle,
+            toggleAnimationDuration: widget.toggleAnimationDuration,
+            scrollDuration: widget.scrollDuration,
+            scrollPosition: widget.scrollPosition,
+            trailing: widget.trailing,
+            trailingExpanded: widget.trailingExpanded,
+          );
+        },
       ),
     );
   }
