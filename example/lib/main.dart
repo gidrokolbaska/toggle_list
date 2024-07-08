@@ -90,72 +90,9 @@ class _ExampleAppPageState extends State<ExampleAppPage> {
                 ),
                 color: appColor.withOpacity(0.15),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '$index^2 is ${index * index}',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    'Properties of n^2:\nGeometric figure: parabola\nRoot: n=0\nDiscriminant: Δ = 0\nParity: even',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  const Divider(
-                    color: Colors.white,
-                    height: 2,
-                    thickness: 2,
-                  ),
-                  ButtonBar(
-                    alignment: MainAxisAlignment.spaceAround,
-                    buttonHeight: 32.0,
-                    buttonMinWidth: 90.0,
-                    children: [
-                      TextButton(
-                        onPressed: () {},
-                        child: const Column(
-                          children: [
-                            Icon(Icons.add),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 2.0),
-                            ),
-                            Text('Add offset'),
-                          ],
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Column(
-                          children: [
-                            Icon(Icons.edit),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 2.0),
-                            ),
-                            Text('Draw plot'),
-                          ],
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Column(
-                          children: [
-                            Icon(Icons.save),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 2.0),
-                            ),
-                            Text('Export plot'),
-                          ],
-                        ),
-                      ),
-                    ],
-                  )
-                ],
+              child: Text(
+                '$index^2 is ${index * index}',
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
             ),
             //onExpansionChanged: _expansionChangedCallback,

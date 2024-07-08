@@ -214,6 +214,7 @@ class _ToggleListItemState extends State<ToggleListItem>
                   child: Align(
                     heightFactor: _heightAnimation.value,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         widget.divider,
                         child,
